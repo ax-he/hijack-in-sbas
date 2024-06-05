@@ -20,7 +20,7 @@ There are **two** methods to perform BGP prefix hijack operations.
 5. Check the visualization container with `http://127.0.0.1:8080/map.html` (`cd client/` and `docker-compose build && docker-compose up`). Use `ICMP` filter to better track the status of packet transmission.
 
 6. Once the hijack starts, test the attack by examining the routing information table of other ASes or by sending ping to the victim.
-For example, the default attacker is AS11, and the victim is AS101. We can evaluate the attack results by observing the status of AS13:
+For example, the default attacker is AS11, and the victim is AS101. You can evaluate the attack results by observing the status of AS13:
 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;On the 13/cs1 node, run `ping 10.101.0.71` to check the return results of the ping command.
 

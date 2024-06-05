@@ -31,9 +31,11 @@ For example, the default attacker is AS11, and the victim is AS101. You can eval
 ### Using manual methods
 1. Run the **original** ['edunet_pure_bgp.py'](https://github.com/netsys-lab/seed-emulator/blob/feature/scion-sbas/examples/scion/S12-edunet/edunet_pure_bgp.py): `python3 edunet_pure_bgp.py`.
 
-2. Check the visualization container with `http://127.0.0.1:8080/map.html` (`cd client/` and `docker-compose build && docker-compose up`).
+2. `cd output/` and run `docker-compose build && docker-compose up`.
 
-3. Select an attacker and a victim (we will continue to use AS11 and AS101 as examples). Go to the container, which is 11/br0, go to the `/etc/bird` folder, and open the BGP configuration file 'bird.conf'. Add the following to the end of the configuration file.
+3. Check the visualization container with `http://127.0.0.1:8080/map.html` (`cd client/` and `docker-compose build && docker-compose up`).
+
+4. Select an attacker and a victim (we will continue to use AS11 and AS101 as examples). Go to the container, which is 11/br0, go to the `/etc/bird` folder, and open the BGP configuration file 'bird.conf'. Add the following to the end of the configuration file.
 ```
 protocol static hijacks {
     ipv4 {
@@ -45,7 +47,7 @@ protocol static hijacks {
 ```
 After making the change, ask the BGP router to reload configuration file using the command: `birdc configure`.
 
-4. Test the attack by examining the routing information table of other ASes (`birdc show route all`) or by sending ping to the victim (`ping 10.101.0.71`).
+5. Test the attack by examining the routing information table of other ASes (`birdc show route all`) or by sending ping to the victim (`ping 10.101.0.71`).
 
 ## SCION connectivity
 The SCION commands can only be used on the control router (cs1). Use `scion ping 71-101,10.101.0.71` to check SCION connectivity.

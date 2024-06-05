@@ -1,24 +1,24 @@
 # hijack-in-sbas
 This project is solely for conducting prefix hijack experiments in SBAS. The original repository can be found at [scion-sbas](https://github.com/netsys-lab/seed-emulator/tree/feature/scion-sbas/).
 
-The document of bgp prefix hijacking in seed-emulator can be found at [B04-bgp-prefix-hijacking](https://github.com/seed-labs/seed-emulator/tree/master/examples/B04-bgp-prefix-hijacking).
+The document of performing bgp prefix hijacking in seed-emulator can be found at [B04-bgp-prefix-hijacking](https://github.com/seed-labs/seed-emulator/tree/master/examples/B04-bgp-prefix-hijacking).
 
 To run this experiment, you need to install the seed-emulator and the SCION framework.
 
-There are two methods to perform BGP prefix hijack operations.
+There are **two** methods to perform BGP prefix hijack operations.
 
 ## Using automated scripts
 1. Replace the original ['edunet_pure_bgp.py'](https://github.com/netsys-lab/seed-emulator/blob/feature/scion-sbas/examples/scion/S12-edunet/edunet_pure_bgp.py) with this 'edunet_pure_bgp.py' file.
 
-2. Place the 'hijack.sh' file in the same directory as 'edunet_pure_bgp.py', which might be "examples/scion/S12-edunet/".
+2. Place the 'hijack.sh' file in the same directory as 'edunet_pure_bgp.py', which might be `examples/scion/S12-edunet/`.
 
-3. Create a "utility/" directory under the "scion/" directory, and place the 'experiment.py' file in that directory.
+3. Create a `utility/` directory under the `scion/` directory, and place the 'experiment.py' file in that directory.
 
 4. Run the 'edunet_pure_bgp.py': `python3 edunet_pure_bgp.py`.
 
 5. Check the visualization container with `http://127.0.0.1:8080/map.html` (`cd client/` and `docker-compose build && docker-compose up`).
 
-6. Once the hijack starts, check the success of the attack by examining the routing information table of other ASes or by sending ping results to the victim.
+6. Once the hijack starts, test the attack by examining the routing information table of other ASes or by sending ping to the victim.
 For example, the default attacker is AS11, and the victim is AS101. We can evaluate the attack results by observing the status of AS13:
 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;On the 13/cs1 node, run `ping 10.101.0.71` to check the return results of the ping command.
@@ -32,7 +32,7 @@ For example, the default attacker is AS11, and the victim is AS101. We can evalu
 
 2. Check the visualization container with `http://127.0.0.1:8080/map.html` (`cd client/` and `docker-compose build && docker-compose up`).
 
-3. Select an attacker and a victim (we will continue to use AS11 and AS101 as examples). Go to the container, which is 11/br0, go to the '/etc/bird' folder, and open the BGP configuration file 'bird.conf'. Add the following to the end of the configuration file.
+3. Select an attacker and a victim (we will continue to use AS11 and AS101 as examples). Go to the container, which is 11/br0, go to the `/etc/bird` folder, and open the BGP configuration file 'bird.conf'. Add the following to the end of the configuration file.
 ```
 protocol static hijacks {
     ipv4 {
@@ -43,3 +43,5 @@ protocol static hijacks {
 }
 ```
 After making the change, ask the BGP router to reload configuration file using the command: `birdc configure`.
+
+4. Test the attack by examining the routing information table of other ASes (`birdc show route all`) or by sending ping to the victim (`ping 10.101.0.71`).

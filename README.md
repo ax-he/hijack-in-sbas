@@ -26,3 +26,10 @@ For example, the default attacker is AS11, and the victim is AS101. We can evalu
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;On the 13/br0 node, run `birdc show route all` to check the latest routing table of AS13.
 
 7. You can change the attacker and the victim by modifying the hijackAS function (line 343 in edunet_pure_bgp.py)
+
+## Using manual methods
+1. Run the **original** ['edunet_pure_bgp.py'](https://github.com/netsys-lab/seed-emulator/blob/feature/scion-sbas/examples/scion/S12-edunet/edunet_pure_bgp.py): `python3 edunet_pure_bgp.py`.
+
+2. Check the visualization container with `http://127.0.0.1:8080/map.html` (`cd client/` and `docker-compose build && docker-compose up`).
+
+3. Select an attacker and a victim (we will continue to use AS11 and AS101 as examples).

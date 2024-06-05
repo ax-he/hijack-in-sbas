@@ -338,10 +338,12 @@ whales.compose.up(detach=True)
 print("Sleeping for 10 seconds until hijack")
 time.sleep(10)
 
-print("Hijacking AS, sleeping for 10 minutes")
+print("Hijacking AS, sleeping for 5 minutes")
+# hijackAS(attack-AS, victim-AS)
 experiment.hijackAS(11, 101)
-time.sleep(60)
+time.sleep(300)
 
+# Restore the attacker's 'birdc.conf' file
 experiment.endHijack(11)
 print("Hijack ended, sleep for another 30 seconds")
 time.sleep(30)

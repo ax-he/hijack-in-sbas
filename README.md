@@ -1,5 +1,5 @@
 # Hijack-in-SBAS
-This project is solely for conducting prefix hijack experiments in SBAS. The original repository can be found at [scion-sbas](https://github.com/netsys-lab/seed-emulator/tree/feature/scion-sbas/).
+This project is solely for conducting prefix hijacking experiments in SBAS. The original repository can be found at [scion-sbas](https://github.com/netsys-lab/seed-emulator/tree/feature/scion-sbas/).
 
 The document of performing bgp prefix hijacking in seed-emulator can be found at [B04-bgp-prefix-hijacking](https://github.com/seed-labs/seed-emulator/tree/master/examples/B04-bgp-prefix-hijacking).
 

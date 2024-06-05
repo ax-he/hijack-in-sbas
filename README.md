@@ -1,6 +1,8 @@
 # hijack-in-sbas
 This project is solely for conducting prefix hijack experiments in SBAS. The original repository can be found at https://github.com/netsys-lab/seed-emulator/tree/feature/scion-sbas/.
 
+The document of bgp prefix hijacking in seed-emulator can be found at https://github.com/seed-labs/seed-emulator/tree/master/examples/B04-bgp-prefix-hijacking.
+
 To run this experiment, you need to install the seed-emulator and the SCION framework.
 
 There are two methods to perform BGP prefix hijack operations.
@@ -19,8 +21,8 @@ There are two methods to perform BGP prefix hijack operations.
 6. Once the hijack starts, check the success of the attack by examining the routing information table of other ASes or by sending ping results to the victim.
 For example, the default attacker is AS11, and the victim is AS101. We can evaluate the attack results by observing the status of AS13:
 
-On the 13/cs1 node, run `ping 10.101.0.71` to check the return results of the ping command.
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;On the 13/cs1 node, run `ping 10.101.0.71` to check the return results of the ping command.
 
-On the 13/br0 node, run `birdc show route all` to check the latest routing table of AS13.
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;On the 13/br0 node, run `birdc show route all` to check the latest routing table of AS13.
 
 7. You can change the attacker and the victim by modifying the hijackAS function (line 343 in edunet_pure_bgp.py)

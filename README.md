@@ -1,14 +1,14 @@
 # hijack-in-sbas
-This project is solely for conducting prefix hijack experiments in SBAS. The original repository can be found at https://github.com/netsys-lab/seed-emulator/tree/feature/scion-sbas/.
+This project is solely for conducting prefix hijack experiments in SBAS. The original repository can be found at [scion-sbas](https://github.com/netsys-lab/seed-emulator/tree/feature/scion-sbas/).
 
-The document of bgp prefix hijacking in seed-emulator can be found at https://github.com/seed-labs/seed-emulator/tree/master/examples/B04-bgp-prefix-hijacking.
+The document of bgp prefix hijacking in seed-emulator can be found at [B04-bgp-prefix-hijacking](https://github.com/seed-labs/seed-emulator/tree/master/examples/B04-bgp-prefix-hijacking).
 
 To run this experiment, you need to install the seed-emulator and the SCION framework.
 
 There are two methods to perform BGP prefix hijack operations.
 
 ## Using automated scripts
-1. Replace the original 'edunet_pure_bgp.py' (https://github.com/netsys-lab/seed-emulator/blob/feature/scion-sbas/examples/scion/S12-edunet/edunet_pure_bgp.py) with this 'edunet_pure_bgp.py' file.
+1. Replace the original ['edunet_pure_bgp.py'](https://github.com/netsys-lab/seed-emulator/blob/feature/scion-sbas/examples/scion/S12-edunet/edunet_pure_bgp.py) with this 'edunet_pure_bgp.py' file.
 
 2. Place the 'hijack.sh' file in the same directory as 'edunet_pure_bgp.py', which might be "examples/scion/S12-edunet/".
 

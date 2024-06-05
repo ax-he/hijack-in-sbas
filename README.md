@@ -32,4 +32,14 @@ For example, the default attacker is AS11, and the victim is AS101. We can evalu
 
 2. Check the visualization container with `http://127.0.0.1:8080/map.html` (`cd client/` and `docker-compose build && docker-compose up`).
 
-3. Select an attacker and a victim (we will continue to use AS11 and AS101 as examples).
+3. Select an attacker and a victim (we will continue to use AS11 and AS101 as examples). Go to the container, which is 11/br0, go to the '/etc/bird' folder, and open the BGP configuration file 'bird.conf'. Add the following to the end of the configuration file.
+```
+protocol static hijacks {
+    ipv4 {
+        table t_bgp;
+    };
+    route 10.101.0.0/24 via 10.11.0.71   { bgp_large_community.add(LOCAL_COMM); };
+    route 10.101.1.0/24 via 10.11.0.71 { bgp_large_community.add(LOCAL_COMM); };
+}
+```
+After making the change, ask the BGP router to reload configuration file using the command: `birdc configure`.

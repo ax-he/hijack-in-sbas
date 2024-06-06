@@ -9,13 +9,13 @@ To run this experiment, you need to install the seed-emulator and the SCION fram
 There are **two** methods to perform BGP prefix hijack operations.
 
 ### Using automated scripts
-1. Replace the original ['edunet_pure_bgp.py'](https://github.com/netsys-lab/seed-emulator/blob/feature/scion-sbas/examples/scion/S12-edunet/edunet_pure_bgp.py) with this 'edunet_pure_bgp.py' file.
+1. Replace the original ['edunet_pure_bgp.py'](https://github.com/netsys-lab/seed-emulator/blob/feature/scion-sbas/examples/scion/S12-edunet/edunet_pure_bgp.py) with this `automated.py` file.
 
 2. Place the 'hijack.sh' file in the same directory as 'edunet_pure_bgp.py', which might be `examples/scion/S12-edunet/`.
 
 3. Create a `utility/` directory under the `scion/` directory, and place the 'experiment.py' file in that directory.
 
-4. Run the 'edunet_pure_bgp.py': `python3 edunet_pure_bgp.py`.
+4. Run the 'edunet_pure_bgp.py': `python3 automated.py`.
 
 5. Check the visualization container with `http://127.0.0.1:8080/map.html` (`cd client/` and `docker-compose build && docker-compose up`). Use `ICMP` filter to better track the status of packet transmission.
 
@@ -29,7 +29,7 @@ For example, the default attacker is AS11, and the victim is AS101. You can eval
 7. You can change the attacker and the victim by modifying the hijackAS function (line 343 in edunet_pure_bgp.py)
 
 ### Using manual methods
-1. Run the **original** ['edunet_pure_bgp.py'](https://github.com/netsys-lab/seed-emulator/blob/feature/scion-sbas/examples/scion/S12-edunet/edunet_pure_bgp.py): `python3 edunet_pure_bgp.py`.
+1. Replace the original ['edunet_pure_bgp.py'](https://github.com/netsys-lab/seed-emulator/blob/feature/scion-sbas/examples/scion/S12-edunet/edunet_pure_bgp.py) with this `manual.py` file. Run with `python3 manual.py`
 
 2. `cd output/` and run `docker-compose build && docker-compose up`.
 

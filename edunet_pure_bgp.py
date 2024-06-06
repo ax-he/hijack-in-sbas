@@ -105,6 +105,8 @@ bridgesCore_router.joinNetwork('net0').joinNetwork('ix150')#.joinNetwork('ix151'
 bridgesCore_router2 = bridgesCore.createRouter('br1')
 bridgesCore_router2.joinNetwork('net0').joinNetwork('ix151')
 bridgesCore_router.appendStartCommand("tcset ix150 --delay=70ms --overwrite")
+ebgp.addRsPeer(150, 10)
+ebgp.addRsPeer(151, 10)
 
 # GEANT Core
 geantCore = base.createAutonomousSystem(11)
@@ -120,11 +122,15 @@ geantCore_router2.joinNetwork('net0').joinNetwork('ix152')
 geantCore_router2.appendStartCommand("tcset net0 --delay=10ms --overwrite")
 geantCore_router3 = geantCore.createRouter('br2')
 geantCore_router3.joinNetwork('net0').joinNetwork('ix153')
+ebgp.addRsPeer(150, 11)
+ebgp.addRsPeer(152, 11)
+ebgp.addRsPeer(153, 11)
 
 
 # Connect Bridges / GEANT TODO: More than one link does not work...
 scion.addIxLink(150, (71, 10), (71, 11), ScLinkType.Core, count=2)
 # scion.addIxLink(151, (71, 10), (71, 11), ScLinkType.Core)
+ebgp.addPrivatePeering(150, 10, 11, PeerRelationship.Unfiltered)
 
 # KISTI Cores
 # 12: "71-2:0:3e", # KISTI Core AMS
@@ -142,6 +148,8 @@ kistiAmsCore_router1.appendStartCommand("tcset ix153 --delay=16ms --overwrite")
 kistiAmsCore_router2 = kistiAmsCore.createRouter('br1')
 kistiAmsCore_router2.joinNetwork('net0').joinNetwork('ix154')
 kistiAmsCore_router2.appendStartCommand("tcset ix154 --delay=245ms --overwrite")
+ebgp.addRsPeer(153, 12)
+ebgp.addRsPeer(154, 12)
 
 kistiSgCore = base.createAutonomousSystem(13)
 scion_isd.addIsdAs(71, 13, is_core=True)
@@ -154,6 +162,8 @@ kistiSgCore_router1.appendStartCommand("tcset ix153 --delay=340ms --overwrite")
 kistiSgCore_router2 = kistiSgCore.createRouter('br1')
 kistiSgCore_router2.joinNetwork('net0').joinNetwork('ix154')
 kistiSgCore_router1.appendStartCommand("tcset ix153 --delay=76ms --overwrite")
+ebgp.addRsPeer(153, 13)
+ebgp.addRsPeer(154, 13)
 
 kistiDjCore = base.createAutonomousSystem(14)
 scion_isd.addIsdAs(71, 14, is_core=True)
@@ -162,6 +172,7 @@ cs1 = kistiDjCore.createControlService('cs1').joinNetwork('net0')
 createEnvFromASNMapping(cs1)
 kistiDjCore_router1 = kistiDjCore.createRouter('br0')
 kistiDjCore_router1.joinNetwork('net0').joinNetwork('ix154')
+ebgp.addRsPeer(154, 14)
 
 kistiChgCore = base.createAutonomousSystem(15)
 scion_isd.addIsdAs(71, 15, is_core=True)
@@ -170,6 +181,7 @@ kistiChgCore.createControlService('cs1').joinNetwork('net0')
 cs1 = createEnvFromASNMapping(cs1)
 kistiChgCore_router1 = kistiChgCore.createRouter('br0')
 kistiChgCore_router1.joinNetwork('net0').joinNetwork('ix154')
+ebgp.addRsPeer(154, 15)
 
 # KISTI Links
 scion.addIxLink(153, (71, 11), (71, 12), ScLinkType.Core)
@@ -177,6 +189,12 @@ scion.addIxLink(153, (71, 11), (71, 13), ScLinkType.Core)
 scion.addIxLink(154, (71, 14), (71, 12), ScLinkType.Core)
 scion.addIxLink(154, (71, 14), (71, 13), ScLinkType.Core)
 scion.addIxLink(154, (71, 14), (71, 15), ScLinkType.Core)
+ebgp.addPrivatePeering(153, 11, 12, PeerRelationship.Unfiltered)
+ebgp.addPrivatePeering(153, 11, 13, PeerRelationship.Unfiltered)
+ebgp.addPrivatePeering(154, 14, 12, PeerRelationship.Unfiltered)
+ebgp.addPrivatePeering(154, 14, 13, PeerRelationship.Unfiltered)
+ebgp.addPrivatePeering(154, 14, 15, PeerRelationship.Unfiltered)
+
 
 # Equinix AS
 equinix = base.createAutonomousSystem(100)
@@ -191,6 +209,9 @@ equinix_router1.appendStartCommand("tcset ix151 --delay=30ms --overwrite")
 equinix_router2 = equinix.createRouter('br1')
 equinix_router2.joinNetwork('net0').joinNetwork('ix180')
 scion.addIxLink(151, (71, 10), (71, 100), ScLinkType.Transit)
+ebgp.addRsPeer(151, 100)
+ebgp.addRsPeer(180, 100)
+ebgp.addPrivatePeering(151, 10, 100, PeerRelationship.Unfiltered)
 
 
 # UVA
@@ -206,6 +227,10 @@ uva_router1.appendStartCommand("tcset ix151 --delay=20ms --overwrite")
 uva_router2 = uva.createRouter('br1')
 uva_router2.joinNetwork('net0').joinNetwork('ix181')
 scion.addIxLink(151, (71, 10), (71, 101), ScLinkType.Transit)
+ebgp.addRsPeer(151, 101)
+ebgp.addRsPeer(181, 101)
+ebgp.addPrivatePeering(151, 10, 101, PeerRelationship.Unfiltered)
+
 
 # Princeton
 princeton = base.createAutonomousSystem(102)
@@ -220,6 +245,9 @@ princeton_router1.appendStartCommand("tcset ix151 --delay=29ms --overwrite")
 princeton_router2 = princeton.createRouter('br1')
 princeton_router2.joinNetwork('net0').joinNetwork('ix182')
 scion.addIxLink(151, (71, 10), (71, 102), ScLinkType.Transit)
+ebgp.addRsPeer(151, 102)
+ebgp.addRsPeer(182, 102)
+ebgp.addPrivatePeering(151, 10, 102, PeerRelationship.Unfiltered)
 
 # Cybexer
 cybexer = base.createAutonomousSystem(103)
@@ -232,6 +260,9 @@ cybexer_router1 = cybexer.createRouter('br0')
 cybexer_router1.joinNetwork('net0').joinNetwork('ix152')
 cybexer_router1.appendStartCommand("tcset ix152 --delay=35ms --overwrite")
 scion.addIxLink(152, (71, 11), (71, 103), ScLinkType.Transit)
+ebgp.addRsPeer(152, 103)
+ebgp.addPrivatePeering(152, 11, 103, PeerRelationship.Unfiltered)
+
 
 
 # SIDN Labs
@@ -245,6 +276,9 @@ sidn_router1 = sidn.createRouter('br0')
 sidn_router1.joinNetwork('net0').joinNetwork('ix152')
 sidn_router1.appendStartCommand("tcset ix152 --delay=32ms --overwrite")
 scion.addIxLink(152, (71, 11), (71, 104), ScLinkType.Transit)
+ebgp.addRsPeer(152, 104)
+ebgp.addPrivatePeering(152, 11, 104, PeerRelationship.Unfiltered)
+
 
 # Ovgu
 ovgu = base.createAutonomousSystem(105)
@@ -259,6 +293,9 @@ ovgu_router1.appendStartCommand("tcset ix152 --delay=16ms --overwrite")
 ovgu_router2 = ovgu.createRouter('br1')
 ovgu_router2.joinNetwork('net0').joinNetwork('ix183')
 scion.addIxLink(152, (71, 11), (71, 105), ScLinkType.Transit)
+ebgp.addRsPeer(152, 105)
+ebgp.addRsPeer(183, 105)
+ebgp.addPrivatePeering(152, 11, 105, PeerRelationship.Unfiltered)
 
 # Demokritos
 demokritos = base.createAutonomousSystem(106)
@@ -271,6 +308,8 @@ demokritos_router1 = demokritos.createRouter('br0')
 demokritos_router1.joinNetwork('net0').joinNetwork('ix152')
 demokritos_router1.appendStartCommand("tcset ix152 --delay=40ms --overwrite")
 scion.addIxLink(152, (71, 11), (71, 106), ScLinkType.Transit)
+ebgp.addRsPeer(152, 106)
+ebgp.addPrivatePeering(152, 11, 106, PeerRelationship.Unfiltered)
 
 # SBAS customers
 # AS-200: Equinix customer
@@ -278,24 +317,28 @@ as200 = base.createAutonomousSystem(200)
 scion_isd.addIsdAs(1, 200, is_core=True)
 as200.createNetwork('net0')
 as200.createRouter('br0').joinNetwork('net0').joinNetwork('ix180')
+ebgp.addRsPeer(180, 200)
 
 # AS-201: UVA Customer
 as201 = base.createAutonomousSystem(201)
 scion_isd.addIsdAs(1, 201, is_core=True)
 as201.createNetwork('net0')
 as201.createRouter('br0').joinNetwork('net0').joinNetwork('ix181')
+ebgp.addRsPeer(181, 201)
 
 # AS-202: Princeton Customer
 as202 = base.createAutonomousSystem(202)
 scion_isd.addIsdAs(1, 202, is_core=True)
 as202.createNetwork('net0')
 as202.createRouter('br0').joinNetwork('net0').joinNetwork('ix182')
+ebgp.addRsPeer(182, 202)
 
 # AS-205: Princeton Customer
 as205 = base.createAutonomousSystem(205)
 scion_isd.addIsdAs(1, 205, is_core=True)
 as205.createNetwork('net0')
 as205.createRouter('br0').joinNetwork('net0').joinNetwork('ix183')
+ebgp.addRsPeer(183, 205)
 
 sbas.addPop(100)
 sbas.addPop(101)
@@ -338,12 +381,10 @@ whales.compose.up(detach=True)
 print("Sleeping for 10 seconds until hijack")
 time.sleep(10)
 
-print("Hijacking AS, sleeping for 5 minutes")
-# hijackAS(attack-AS, victim-AS)
+print("Hijacking AS, sleeping for 10 minutes")
 experiment.hijackAS(11, 101)
-time.sleep(300)
+time.sleep(60)
 
-# Restore the attacker's 'birdc.conf' file
 experiment.endHijack(11)
 print("Hijack ended, sleep for another 30 seconds")
 time.sleep(30)

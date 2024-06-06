@@ -11,7 +11,7 @@ There are **two** methods to perform BGP prefix hijack operations.
 ### Using automated scripts
 1. Replace the original ['edunet_pure_bgp.py'](https://github.com/netsys-lab/seed-emulator/blob/feature/scion-sbas/examples/scion/S12-edunet/edunet_pure_bgp.py) with this `automated.py` file.
 
-2. Place the 'hijack.sh' file in the same directory as 'edunet_pure_bgp.py', which might be `examples/scion/S12-edunet/`.
+2. Place the 'hijack.sh' file in the same directory as 'automated.py', which might be `examples/scion/S12-edunet/`.
 
 3. Create a `utility/` directory under the `scion/` directory, and place the 'experiment.py' file in that directory.
 

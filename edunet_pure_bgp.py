@@ -383,7 +383,7 @@ time.sleep(10)
 
 print("Hijacking AS, sleeping for 10 minutes")
 experiment.hijackAS(11, 101)
-time.sleep(60)
+time.sleep(600)
 
 experiment.endHijack(11)
 print("Hijack ended, sleep for another 30 seconds")

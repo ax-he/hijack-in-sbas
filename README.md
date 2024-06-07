@@ -20,11 +20,15 @@ There are **two** methods to perform BGP prefix hijack operations.
 5. Check the visualization container with `http://127.0.0.1:8080/map.html` (`cd client/` and `docker-compose build && docker-compose up`). Use `ICMP` filter to better track the status of packet transmission.
 
 6. Once the hijack starts, test the attack by examining the routing information table of other ASes or by sending ping to the victim.
-For example, the default attacker is AS11, and the victim is AS101. You can evaluate the attack results by observing the status of AS13:
+For example, the default attacker is AS11, and the victim is AS101. You can evaluate the attack results by observing the status of AS12:
 
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;On the 13/cs1 node, run `ping 10.101.0.71` to check the return results of the ping command.
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;On the 12/cs1 node, run `ping 10.101.0.71` to check the return results of the ping command.
+![image](https://github.com/ax-he/hijack-in-sbas/assets/35193352/9cacc44a-2e79-48d3-a65a-e026af89566d)
 
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;On the 13/br0 node, run `birdc show route all` to check the latest routing table of AS13.
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;On the 12/br0 node, run `birdc show route all` to check the latest routing table of AS12.
+![image](https://github.com/ax-he/hijack-in-sbas/assets/35193352/967e7f32-f84f-4a75-8ac0-d3946ed7815d)
+Note that the original routing table should be:
+![image](https://github.com/ax-he/hijack-in-sbas/assets/35193352/1ce381eb-3077-4030-96f4-a88205cab6d2)
 
 7. You can change the attacker and the victim by modifying the hijackAS function (line 343 in edunet_pure_bgp.py)
 

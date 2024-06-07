@@ -13,9 +13,9 @@ There are **two** methods to perform BGP prefix hijack operations.
 
 2. Place the 'hijack.sh' file in the same directory as 'automated.py', which might be `examples/scion/S12-edunet/`.
 
-3. Create a `utility/` directory under the `scion/` directory, and place the 'experiment.py' file in that directory.
+3. Create a `utility/` directory under the `scion/` directory, and place the `experiment.py` file in that directory.
 
-4. Run the 'edunet_pure_bgp.py': `python3 automated.py`.
+4. Run the 'automated.py': `python3 automated.py`.
 
 5. Check the visualization container with `http://127.0.0.1:8080/map.html` (`cd client/` and `docker-compose build && docker-compose up`). Use `ICMP` filter to better track the status of packet transmission.
 

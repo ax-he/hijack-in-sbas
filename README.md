@@ -30,6 +30,12 @@ For example, the default attacker is AS11, and the victim is AS101. You can eval
 Note that the original routing table should be:
 ![image](https://github.com/ax-he/hijack-in-sbas/assets/35193352/1ce381eb-3077-4030-96f4-a88205cab6d2)
 
+A special phenomenon in this attack is that AS 105 can still successfully access AS 101 through SBAS when its routing policy does not point to AS 101.
+![image](https://github.com/ax-he/hijack-in-sbas/assets/35193352/f5be04bd-7607-41f0-aa76-58bfeeeabc6f)
+![image](https://github.com/ax-he/hijack-in-sbas/assets/35193352/a79f8de0-b044-4808-93d7-38e10568af5a)
+In contrast, the original routing table of AS 105 is as following:
+![image](https://github.com/ax-he/hijack-in-sbas/assets/35193352/c37a5ebf-b285-47ed-bffd-4f0587312d84)
+
 7. You can change the attacker and the victim by modifying the hijackAS function (line 343 in edunet_pure_bgp.py)
 
 ### Using manual methods
